@@ -3,7 +3,7 @@ import React from "react";
 import Logo from "../../logo/logo.component";
 import NavigationItems from "../navigation-items/navigation-items.component";
 import Backdrop from "../../UI/backdrop/backdrop.component";
-import Aux from "../../../hoc/auxiliary";
+import Aux from "../../../hoc/auxiliary/auxiliary";
 
 import classes from "./side-drawer.module.css";
 
@@ -16,7 +16,7 @@ const sideDrawer = props => {
     <Aux>
       <Backdrop
         show={props.open}
-        clicked={props.close}
+        clicked={props.closeSideDrawer}
       />
       <div className={attachedClasses.join(' ')}>
         <div className={classes.Logo}>

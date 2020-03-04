@@ -1,6 +1,7 @@
 import React from "react";
 
 import BuildControl from "./build-control/build-control.component";
+
 import classes from "./build-controls.module.css";
 
 const constrols = [
@@ -17,9 +18,9 @@ const buildControls = props => (
       <BuildControl
         key={ctrl.label}
         label={ctrl.label}
+        disabled={props.disabled[ctrl.type]}
         added={() => props.ingredientAdded(ctrl.type)}
         removed={() => props.ingredientRemoved(ctrl.type)}
-        disabled={props.disabled[ctrl.type]}
       />
     ))}
     <button
