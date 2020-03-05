@@ -30,11 +30,11 @@ class OrderSummary extends React.Component {
         <p><strong>Total price: USD {this.props.price.toFixed(2)}</strong></p>
         <p>Continue to check out?</p>
         <Button
-          clicked={this.props.purchaseContinue }
+          clicked={this.props.purchaseContinued }
           btnType="Success"
         >Continue</Button>
         <Button
-          clicked={this.props.purchaseCancel}
+          clicked={this.props.purchaseCancelled}
           btnType="Danger"
         >Cancel</Button>
       </Aux>
