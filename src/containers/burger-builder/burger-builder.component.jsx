@@ -35,6 +35,7 @@ class BurgerBuilder extends React.Component {
 
   componentDidMount() {
 
+    // axios.get("/base-info.json")
     axios.get("/base-info.json")
       .then(response => {
         const ingredients = response.data.ingredients;
@@ -44,7 +45,6 @@ class BurgerBuilder extends React.Component {
         totalPrice = Object.keys(ingredients).map((type) => (
           ingredients[type] * prices[type]
         )).reduce((sum, value) => (sum + value), totalPrice);
-        console.log("TotalPrice", totalPrice);
 
         this.setState({
           ingredients: ingredients,
@@ -54,7 +54,6 @@ class BurgerBuilder extends React.Component {
 
       })
       .catch(error => {
-        console.log("not loaded");
         this.setState({ error: true })
       });
   };
@@ -111,7 +110,6 @@ class BurgerBuilder extends React.Component {
   };
 
   purchaseContinueHandler = () => {
-    // alert("You continue!");
     this.setState({ loading: true });
     const order = {
       ingredients: this.state.ingredients,
