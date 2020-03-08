@@ -34,8 +34,7 @@ class BurgerBuilder extends React.Component {
   };
 
   componentDidMount() {
-
-    // axios.get("/base-info.json")
+    // console.log("burger builder component's props",this.props);
     axios.get("/base-info.json")
       .then(response => {
         const ingredients = response.data.ingredients;
@@ -110,30 +109,31 @@ class BurgerBuilder extends React.Component {
   };
 
   purchaseContinueHandler = () => {
-    this.setState({ loading: true });
-    const order = {
-      ingredients: this.state.ingredients,
-      price: this.state.totalPrice,
-      customer: {
-        name: "Sergey Kniazev",
-        addess: {
-          street: "1, Test street, apt ZZZ",
-          zipCode: "ZZZZZZ",
-          country: "Russia"
-        },
-        email: "test@test.com"
-      },
-      deliveryMethod: "fastest"
-    };
-    // this.purchaseCancelHandler();
-    axios.post("/orders.json", order)
-      .then(response => {
-        this.setState({ loading: false, purchasing: false });
-      })
-      .catch(error => {
-        // console.log(error);
-        this.setState({ loading: false, purchasing: false });
-      });
+    this.props.history.push("/checkout");
+    // this.setState({ loading: true });
+    // const order = {
+    //   ingredients: this.state.ingredients,
+    //   price: this.state.totalPrice,
+    //   customer: {
+    //     name: "Sergey Kniazev",
+    //     addess: {
+    //       street: "1, Test street, apt ZZZ",
+    //       zipCode: "ZZZZZZ",
+    //       country: "Russia"
+    //     },
+    //     email: "test@test.com"
+    //   },
+    //   deliveryMethod: "fastest"
+    // };
+    // // this.purchaseCancelHandler();
+    // axios.post("/orders.json", order)
+    //   .then(response => {
+    //     this.setState({ loading: false, purchasing: false });
+    //   })
+    //   .catch(error => {
+    //     // console.log(error);
+    //     this.setState({ loading: false, purchasing: false });
+    //   });
   };
 
   render() {
@@ -151,16 +151,16 @@ class BurgerBuilder extends React.Component {
     if (this.state.ingredients) {
       burger = (
         <Aux>
-        <Burger ingredients={this.state.ingredients} />
-        <BuildControls
-          ingredientAdded={this.addIngredientHandler}
-          ingredientRemoved={this.removeIngredientHandler}
-          disabled={disabledInfo}
-          purchaseable={this.state.purchaseable}
-          ordered={this.purchaseHandling}
-          price={this.state.totalPrice}
-          />
-      </Aux>
+          <Burger ingredients={this.state.ingredients} />
+          <BuildControls
+            ingredientAdded={this.addIngredientHandler}
+            ingredientRemoved={this.removeIngredientHandler}
+            disabled={disabledInfo}
+            purchaseable={this.state.purchaseable}
+            ordered={this.purchaseHandling}
+            price={this.state.totalPrice}
+            />
+        </Aux>
       );
       orderSummary = <OrderSummary
         ingredients={this.state.ingredients}
