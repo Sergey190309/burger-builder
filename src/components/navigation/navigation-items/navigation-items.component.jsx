@@ -7,17 +7,16 @@ import classes from "./navigation-items.module.css";
 const navigationItems = props => (
   <ul className={classes.NavirationItems}>
     <NavigationItem
+      exact
       link="/"
-      active
     >
       Burger builder
     </NavigationItem>
     <NavigationItem
-      link="/"
+      link="/orders"
     >
-      Check out
+      Orders
     </NavigationItem>
-
   </ul>
 );
 

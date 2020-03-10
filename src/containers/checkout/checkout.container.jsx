@@ -18,8 +18,8 @@ class Checkout extends React.Component {
     const ingredients = {};
     let price = 0;
     for (let param of query.entries()) {
-      if (param[0].split(' ')[0] === "price") {
-        price = +param[0].split(' ')[1];
+      if (param[0] === "price") {
+        price = +param[1];
       } else {
         ingredients[param[0].split(' ')[0]] = +param[0].split(' ')[1];
       };
