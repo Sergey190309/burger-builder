@@ -4,11 +4,18 @@ import classes from "./input.module.css";
 
 const input = props => {
   let inputElement = null;
+  const inputClasses = [classes.InputElement];
+  // console.log("input component: invalid", props.invalid, "shouldvalidate", props.shouldValidate, "touched", props.touched)
+
+  if (props.invalid && props.shouldValidate && props.touched) {
+  // if (props.invalid && props.shouldValidate) {
+    inputClasses.push(classes.Invalid);
+  };
 
   switch (props.elementtype) {
     case ("input"):
       inputElement = <input
-        className={classes.InputElement}
+        className={inputClasses.join(' ')}
         {...props.elementconfig}
         value={props.value}
         onChange={props.changed}
@@ -16,7 +23,7 @@ const input = props => {
       break;
     case ("select"):
       inputElement = (<select
-        className={classes.InputElement}
+        className={inputClasses.join(' ')}
         value={props.value}
         onChange={props.changed}
       >
@@ -32,7 +39,7 @@ const input = props => {
         break;
       default:
       inputElement = <input
-        className={classes.InputElement}
+        className={inputClasses.join(' ')}
         {...props}
         value={props.value}
         onChange={props.changed}

@@ -16,40 +16,72 @@ class ContactData extends React.Component {
           type: "text",
           placeholder: "Your Name",
         },
-        value: ""
+        value: "",
+        validation: {
+          required: true
+        },
+        valid: false,
+        touched: false
       },
+
       street: {
         elementType: "input",
         elementConfig: {
           type: "text",
           placeholder: "Street",
         },
-        value: ""
+        value: "",
+        validation: {
+          required: true
+        },
+        valid: false,
+        touched: false
       },
+
       zipCode: {
         elementType: "input",
         elementConfig: {
           type: "text",
           placeholder: "ZIP code",
         },
-        value: ""
+        value: "",
+        validation: {
+          required: true,
+          minLength: 6,
+          maxLength: 6
+        },
+        valid: false,
+        touched: false
       },
+
       country: {
         elementType: "input",
         elementConfig: {
           type: "text",
           placeholder: "Country",
         },
-        value: ""
+        value: "",
+        validation: {
+          required: true
+        },
+        valid: false,
+        touched: false
       },
+
       email: {
         elementType: "input",
         elementConfig: {
           type: "email",
           placeholder: "Your e-mail",
         },
-        value: ""
+        value: "",
+        validation: {
+          required: true
+        },
+        valid: false,
+        touched: false
       },
+
       deliveryMethod: {
         elementType: "select",
         elementConfig: {
@@ -59,9 +91,12 @@ class ContactData extends React.Component {
             { value: "cheapest", displayValue: "Cheapest" }
           ]
         },
-        value: ""
+        value: "fastest",
+        validation: {},
+        valid: true
       },
     },
+    formIsValid: false,
     loading: false
   }
 
@@ -92,15 +127,42 @@ class ContactData extends React.Component {
 
   };
 
+  checkValidity = (value, rules) => {
+    let isValid = true;
+
+    if (!rules) { return isValid };
+
+    if (rules.required) {
+      isValid = value.trim() !== "" && isValid;
+    }
+
+    if (rules.minLength) {
+      isValid = value.length >= rules.minLength && isValid;
+    }
+
+    if (rules.maxLength) {
+      isValid = value.length <= rules.maxLength && isValid;
+    }
+    // console.log("contact-data, checkValidity", isValid)
+    return isValid;
+  };
+
   inputChangedHandler = (event, inputId) => {
     // console.log("contact-data.container", inputId, event.target.value);
-    const updatedOrderForm = {
-      ...this.state.orderForm
-    };
+    const updatedOrderForm = { ...this.state.orderForm };
     const updatedFormElement = { ...updatedOrderForm[inputId] };
     updatedFormElement.value = event.target.value;
+    updatedFormElement.valid = this.checkValidity(updatedFormElement.value, updatedFormElement.validation)
+    updatedFormElement.touched = true;
     updatedOrderForm[inputId] = updatedFormElement;
-    this.setState({ orderForm: updatedOrderForm });
+
+    let formIsValid = true;
+    for (let formId in updatedOrderForm) {
+      formIsValid = updatedOrderForm[formId].valid && formIsValid;
+      // console.log("formId:", formId, "updatedOrderForm:", updatedOrderForm[formId].valid);
+    };
+
+    this.setState({ orderForm: updatedOrderForm, formIsValid: formIsValid });
   };
 
   render() {
@@ -120,11 +182,15 @@ class ContactData extends React.Component {
             elementtype={formElement.config.elementType}
             elementconfig={formElement.config.elementConfig}
             value={formElement.config.value}
+            invalid={!formElement.config.valid}
+            shouldValidate={!!formElement.config.validation}
+            touched={formElement.config.touched}
             changed={(event) => this.inputChangedHandler(event, formElement.id)}
           />
         ))}
         <Button
           btnType="Success"
+          disabled={!this.state.formIsValid}
         >Order</Button>
       </form>
     );

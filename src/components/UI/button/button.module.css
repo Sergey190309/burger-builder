@@ -10,15 +10,20 @@
   font-weight: bold;
 }
 
+.Button:disabled {
+  color: #8d9680;
+  cursor: not-allowed;
+}
+
 .Button:first-of-type {
   margin-left: 0;
   padding-left: 0;
 }
 
 .Success {
-  color: #5C9210;
+  color: lightgreen;
 }
 
 .Danger {
-  color: #944317;
+  color: red;
 }
