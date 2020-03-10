@@ -21,7 +21,7 @@ const order = (props) => {
         padding: "5px"
       }}
       key={ig.name}
-    >{ig.name} ({ig.amount})\n</span>
+    >{ig.name} ({ig.amount})</span>
   });
 
   return (
