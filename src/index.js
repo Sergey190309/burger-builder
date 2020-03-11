@@ -3,22 +3,23 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import {
-  createStore
-  // applyMiddleware,
-  // compose
+  createStore,
+  applyMiddleware,
+  compose
 } from "redux";
+import thunk from "redux-thunk";
 
 import './index.css';
 // import App from "./App";
 import App from "./App.jsx"
 // import * as serviceWorker from './serviceWorker';
-import reducer from "./store/reducer";
+import burgerBuilderReducer from "./store/reducers/burger-builder.reducer";
 
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(
-  reducer,
-  // @ts-ignore
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  burgerBuilderReducer,
+  composeEnhancers(applyMiddleware(thunk))
 );
 
 const app = (
