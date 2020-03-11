@@ -1,6 +1,8 @@
 export {
   addIngredient,
-  removeIngredient
+  removeIngredient,
+  initIngredients
+  // setIngredients
 } from "./burger-builder.actions";
 
 export { } from "./order.actions";
