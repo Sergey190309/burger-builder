@@ -4,17 +4,14 @@ import { connect } from "react-redux";
 
 import CheckoutSummary from "../../components/order/checkout-summary/checkout-summary.component";
 import ContactData from "./contact-data/contact-data.container";
-// import * as actions from "../../store/actions/index";
-
-// import classes from "./checkout.module.css";
 
 class Checkout extends React.Component {
+
   onCheckoutCancelledHandler = () => {
     this.props.history.goBack();
   };
 
   onCheckoutContinuedHandler = () => {
-
     this.props.history.replace( '/checkout/contact-data' );
   };
 
@@ -22,8 +19,10 @@ class Checkout extends React.Component {
   render() {
     let summary = <Redirect to="/" />
     if (this.props.ings) {
+      const purchaseRedirect = this.props.purchased ? <Redirect to="/" /> : null;
       summary = (
         <div>
+          {purchaseRedirect}
           <CheckoutSummary
             ingredients={this.props.ings}
             onCheckoutContinued={this.onCheckoutContinuedHandler}

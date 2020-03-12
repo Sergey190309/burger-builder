@@ -8,7 +8,7 @@ import Modal from "../../components/UI/modal/modal.component";
 import OrderSummary from "../../components/burger/order-summary/order-summary.component";
 import Spinner from "../../components/UI/spinner/spinner.component";
 import withErrorHandler from "../../hoc/with-error-handler/with-error-handler.component";
-import * as burgerBuilderActions from "../../store/actions/index";
+import * as actions from "../../store/actions/index";
 import axios from "../../axios-orders"
 
 
@@ -101,13 +101,13 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     onIngredientAdded: (ingName) =>
-      dispatch(burgerBuilderActions.addIngredient(ingName)),
+      dispatch(actions.addIngredient(ingName)),
     onIngredientRemoved: (ingName) =>
-      dispatch(burgerBuilderActions.removeIngredient(ingName)),
+      dispatch(actions.removeIngredient(ingName)),
     onInitIngredients: () =>
-      dispatch(burgerBuilderActions.initIngredients()),
+      dispatch(actions.initIngredients()),
     onInitPurchase: () =>
-      dispatch(burgerBuilderActions.purchaseInit())
+      dispatch(actions.purchaseInit())
   };
 };
 

@@ -20,6 +20,7 @@ class ContactData extends React.Component {
           placeholder: "Your Name",
         },
         value: "",
+        // value: "Test",
         validation: {
           required: true
         },
@@ -34,6 +35,7 @@ class ContactData extends React.Component {
           placeholder: "Street",
         },
         value: "",
+        // value: "Test street",
         validation: {
           required: true
         },
@@ -48,6 +50,7 @@ class ContactData extends React.Component {
           placeholder: "ZIP code",
         },
         value: "",
+        // value: "191002",
         validation: {
           required: true,
           minLength: 6,
@@ -78,6 +81,7 @@ class ContactData extends React.Component {
           placeholder: "Your e-mail",
         },
         value: "",
+        // value: "test@test.com",
         validation: {
           required: true
         },
@@ -189,6 +193,7 @@ class ContactData extends React.Component {
         ))}
         <Button
           btnType="Success"
+          // disabled={false}
           disabled={!this.state.formIsValid}
         >Order</Button>
       </form>

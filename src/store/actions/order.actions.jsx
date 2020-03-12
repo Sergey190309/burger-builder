@@ -2,6 +2,8 @@ import * as actionTypes from "./actions.types";
 import axios from "../../axios-orders";
 
 export const purchaseBurgerSuccess = (id, orderData) => {
+  // console.log("[order.action]/purchaseBurgerSuccess(id)", id);
+  // console.log("[order.action]/purchaseBurgerSuccess(orderData)", orderData);
   return {
     type: actionTypes.PURCHASE_BURGER_SUCCESS,
     orderId: id,
@@ -17,7 +19,7 @@ export const purchaseBurgerFailed = (error) => {
 };
 
 export const purchaseBurgerStart = () => {
-  console.log("[order.actions]purchaseBurgerStart");
+  // console.log("[order.actions]purchaseBurgerStart");
   return {
     type: actionTypes.PURCHASE_BURGER_START
   };
@@ -28,8 +30,8 @@ export const purchaseBurger = (orderData) => {
     dispatch(purchaseBurgerStart());
     axios.post("/orders.json", orderData)
       .then(response => {
-        console.log("[order.action]/purchaseBurgerStart/response.data", response.data);
-        dispatch(purchaseBurgerSuccess(response.data, orderData));
+        // console.log("[order.action]/purchaseBurgerStart/response.data.name", response.data.name);
+        dispatch(purchaseBurgerSuccess(response.data.name, orderData));
       })
       .catch(error => {
         dispatch(purchaseBurgerFailed(error));
@@ -43,14 +45,14 @@ export const purchaseInit = () => {
   };
 };
 
-export const fetchOrdersSuccess = ( orders ) => {
+export const fetchOrdersSuccess = (orders) => {
   return {
       type: actionTypes.FETCH_ORDERS_SUCCESS,
       orders: orders
   };
 };
 
-export const fetchOrdersFail = ( error ) => {
+export const fetchOrdersFail = (error) => {
   return {
       type: actionTypes.FETCH_ORDERS_FAIL,
       error: error
@@ -73,7 +75,7 @@ export const fetchOrders = () => {
                   fetchedOrders.push( {
                       ...res.data[key],
                       id: key
-                  } );
+                  });
               }
               dispatch(fetchOrdersSuccess(fetchedOrders));
           } )

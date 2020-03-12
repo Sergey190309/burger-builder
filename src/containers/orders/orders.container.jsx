@@ -9,29 +9,11 @@ import Spinner from "../../components/UI/spinner/spinner.component";
 
 class Orders extends React.Component {
   componentDidMount() {
-    this.props.onFetchorder();
-    // axios.get("/orders")
-
-    // axios.get("/orders.json")
-    //   .then(res => {
-    //     const fetchedOrders = [];
-    //     for (let key in res.data) {
-    //       fetchedOrders.push({
-    //         ...res.data[key],
-    //         id: key
-    //       });
-    //     }
-    //     // console.log("orders.container", fetchedOrders);
-    //     this.setState({ loading: false, orders: fetchedOrders })
-    //   })
-    //   .catch(err => {
-    //     this.setState({ loading: false })
-    //   });
+    this.props.onFetchOrders();
   };
 
   render() {
     let orders = <Spinner />;
-
     if (!this.props.loading) {
       orders = this.props.orders.map( order => (
         <Order
