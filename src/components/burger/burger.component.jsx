@@ -1,5 +1,4 @@
 import React from "react";
-// import { withRouter } from "react-router-dom";
 
 import BurgerIngredient from "./burger-ingredient/burger-ingredient.components";
 

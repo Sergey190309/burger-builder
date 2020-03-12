@@ -1,5 +1,4 @@
 import axios from "../../axios-orders";
-
 import * as actionTypes from "./actions.types"
 
 export const addIngredient = (ingName) => {
@@ -17,7 +16,6 @@ export const removeIngredient = (ingName) => {
 };
 
 export const setIngredients = (initData) => {
-  // console.log("[burger-builder.actions]/setIngredients/ingredients", initData)
   return {
     type: actionTypes.SET_INGREDIENTS,
     initData: initData

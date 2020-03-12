@@ -5,9 +5,6 @@ import Button from "../../UI/button/button.component";
 
 class OrderSummary extends React.Component {
   // This could be finctional component.
-  // componentWillUpdate() {
-  //   console.log("[OrderSummary] will update");
-  // };
 
   render() {
     const ingredientSummary = Object.keys(this.props.ingredients)
