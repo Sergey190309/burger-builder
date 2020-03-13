@@ -29,8 +29,8 @@ class ContactData extends React.Component {
       price: this.props.ttlPrice,
       orderData: formData
     };
-    console.log("[contact-data.container/orderHandler-order]", order)
-    this.props.onOrderBurger(order);
+    // console.log("[contact-data.container/orderHandler-order]", order)
+    this.props.onOrderBurger(order, this.props.token);
   };
 
   checkValidity = (value, rules) => {
@@ -124,14 +124,15 @@ const mapStateToProps = state => {
   return {
     ings: state.burgerBuilder.ingredients,
     ttlPrice: state.burgerBuilder.totalPrice,
-    loading: state.order.loading
+    loading: state.order.loading,
+    token: state.auth.token
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    onOrderBurger: (orderData) =>
-      dispatch(actions.purchaseBurger(orderData))
+    onOrderBurger: (orderData, token) =>
+      dispatch(actions.purchaseBurger(orderData, token))
   }
 };
 
