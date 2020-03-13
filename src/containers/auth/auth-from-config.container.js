@@ -5,7 +5,7 @@ export const AUTH_CONFIG = {
         type: "email",
         placeholder: "Your e-mail, be carefull",
       },
-      value: "sa@something.com",
+      value: "sas@something.com",
       // value: "",
       validation: {
         required: true,
