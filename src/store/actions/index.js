@@ -9,3 +9,7 @@ export {
   purchaseInit,
   fetchOrders
 } from "./order.actions";
+
+export {
+  auth
+} from "./auth.actions"
