@@ -1,4 +1,6 @@
 import React from "react";
+import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 
 import Aux from "../auxiliary/auxiliary";
 import Toolbar from "../../components/navigation/toolbar/toolbar.component";
@@ -22,10 +24,17 @@ class Layout extends React.Component {
   };
 
   render() {
+
     return (
+
       <Aux>
-        <Toolbar toggleSideDrawer={this.sideDrawerToggleHandler} />
+        {this.props.isAuth} ? <Redirect to="/" /> : null
+        <Toolbar
+          isAuth={this.props.isAuth}
+          toggleSideDrawer={this.sideDrawerToggleHandler}
+        />
         <SideDrawer
+          isAuth={this.props.isAuth}
           open={this.state.showSideDrawer}
           closeSideDrawer={this.sideDrawerCloseHandler}
         />
@@ -37,4 +46,10 @@ class Layout extends React.Component {
   }
 }
 
-export default Layout;
+const mapStateToProps = state => {
+  return {
+    isAuth: state.auth.token !== null
+  };
+};
+
+export default connect(mapStateToProps)(Layout);
