@@ -5,8 +5,8 @@ export const AUTH_CONFIG = {
         type: "email",
         placeholder: "Your e-mail, be carefull",
       },
-      value: "sas@something.com",
-      // value: "",
+      // value: "sas@something.com",
+      value: "",
       validation: {
         required: true,
         isEmail: true
@@ -20,8 +20,8 @@ export const AUTH_CONFIG = {
         type: "password",
         placeholder: "Password, min 6 chars",
       },
-      value: "ksksksl",
-      // value: "",
+      // value: "ksksksl",
+      value: "",
       validation: {
         required: true,
         minLength: 6

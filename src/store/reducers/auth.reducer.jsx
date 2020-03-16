@@ -1,5 +1,5 @@
 import * as actionTypes from "../actions/actions.types";
-import { updateObject } from "../utility";
+import { updateObject } from "../../shared/utility";
 // import { setAuthRedirectPath } from "../actions/auth.actions";
 
 const initialState = {
@@ -15,7 +15,6 @@ const authStart = (state, action) => {
 };
 
 const authSuccess = (state, action) => {
-  // console.log("[auth.reducer]authSuccess(action)", action.authData.idToken)
   return updateObject(state, {
     token: action.token,
     userId: action.userId,

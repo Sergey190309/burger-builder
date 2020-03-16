@@ -9,7 +9,6 @@ export const authStart = () => {
 };
 
 export const authSuccess = (token, id) => {
-  // console.log("[auth.actions]authSuccess(data)", data)
   return {
     type: actionTypes.AUTH_SUCCESS,
     token: token,
@@ -18,7 +17,6 @@ export const authSuccess = (token, id) => {
 };
 
 export const authFail = (error) => {
-  // console.log(error);
   return {
     type: actionTypes.AUTH_FAIL,
     error: error
@@ -36,7 +34,6 @@ export const logout = () => {
 
 export const checkAuthTimeOut = (expTime) => {
   return dispatch => {
-    // console.log(expTime);
     setTimeout(() => {
       dispatch(logout());
     }, expTime * 1000)

@@ -5,7 +5,6 @@ import classes from "./input.module.css";
 const input = props => {
   let inputElement = null;
   const inputClasses = [classes.InputElement];
-  // console.log("input component: invalid", props.invalid, "shouldvalidate", props.shouldValidate, "touched", props.touched)
 
   if (props.invalid && props.shouldValidate && props.touched) {
   // if (props.invalid && props.shouldValidate) {

@@ -2,8 +2,6 @@ import * as actionTypes from "./actions.types";
 import axios from "../../axios-orders";
 
 export const purchaseBurgerSuccess = (id, orderData) => {
-  // console.log("[order.action]/purchaseBurgerSuccess(id)", id);
-  // console.log("[order.action]/purchaseBurgerSuccess(orderData)", orderData);
   return {
     type: actionTypes.PURCHASE_BURGER_SUCCESS,
     orderId: id,
@@ -19,7 +17,6 @@ export const purchaseBurgerFailed = (error) => {
 };
 
 export const purchaseBurgerStart = () => {
-  // console.log("[order.actions]purchaseBurgerStart");
   return {
     type: actionTypes.PURCHASE_BURGER_START
   };
@@ -30,7 +27,6 @@ export const purchaseBurger = (orderData, token) => {
     dispatch(purchaseBurgerStart());
     axios.post("/orders.json?auth=" + token, orderData)
       .then(response => {
-        // console.log("[order.action]/purchaseBurgerStart/response.data.name", response.data.name);
         dispatch(purchaseBurgerSuccess(response.data.name, orderData));
       })
       .catch(error => {
